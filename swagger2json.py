@@ -4,8 +4,7 @@
 # @Author  : CrissChan
 # @Site    : https://blog.csdn.net/crisschan
 # @File    : swagger2json.py
-# @Porject: 在线的swagger（V2）的api文档的内容保存成离线的json格式文件，并提供版本之间的diff功能
-
+# @Porject: 在线的swagger（V2）的api文档的内容保存成离线的json格式文件
 import requests
 import json
 import re
@@ -15,11 +14,11 @@ import errno
 from enum import Enum
 import shutil
 
-class Type(Enum):
+class TYPE(Enum):
     # new 新建，第一次使用
     # rewrite = 覆盖
-    new = 1
-    rewrite = 2
+    NEW = 1
+    RENEW = 2
 class Swagger2Json(object):
 
     def __init__(self, url, out_path,type=Type.new):
@@ -30,9 +29,9 @@ class Swagger2Json(object):
         '''
         self.url = url
         self.out_path = out_path
-        if type == Type.new:
+        if type == TYPE.NEW:
             self.__new_json_files()
-        elif type == Type.rewrite:
+        elif type == TYPE.RENEW:
             self.__rewrite_jsonfile()
     def __make_dir(self, dir_path=None):
         '''
